@@ -1,12 +1,13 @@
 <template>
-        <v-select
+<p></p>
+       <!--  <v-select
         :label="translate.idioma"
         @change="onChangeLan"
         :items="language.options"
         v-model="lang"
         style="width: 330px; z-index: 99999; margin-top: 15px; margin-right: 10px; margin-left: 10px"
         >
-    </v-select>
+    </v-select> -->
 </template>
 
 <script>

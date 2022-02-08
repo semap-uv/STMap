@@ -8,13 +8,10 @@
       <v-tabs v-model="active_tab">
         <v-tab :key="0">
           <v-icon left> map </v-icon>
-          {{ translate.opciones_mapa }}
+          {{ translate.opciones_ }}
         </v-tab>
+       
         <v-tab :key="1">
-          <v-icon left> settings </v-icon>
-          {{ translate.opciones_filtro }}
-        </v-tab>
-        <v-tab :key="2">
           <v-icon left> help </v-icon>
           {{ translate.ayuda }}
         </v-tab>
@@ -30,100 +27,61 @@
                 style="margin-right: 10px; margin-left: 10px"
               >
               </v-select>
-              <v-container fluid>
+           <v-container fluid>
                 <p>{{ translate.visualizar }}</p>
-                <v-radio-group mandatory color="primary" @change="onChangeLayer" v-model="show_layer">
-                  <v-radio :label="translate.ubicacion" value="location"></v-radio>
-                  <v-radio :label="translate.procedencia" value="procedence"></v-radio>
+                <v-radio-group
+                  mandatory
+                  color="primary"
+                  @change="onChangeLayer"
+                  v-model="show_layer"
+                >
+                 
+                  <v-radio
+                    :label="translate.procedencia"
+                    value="procedence"
+                  ></v-radio>
+                   <v-radio
+                    :label="translate.ubicacion"
+                    value="location"
+                  ></v-radio>
                 </v-radio-group>
-              </v-container>
-              <Language :idioma="onChangeLan" />
+              </v-container> 
+              <Language :idioma="onChangeLan" /> 
             </v-flex>
           </v-card>
         </v-tab-item>
+        
+        
         <v-tab-item>
-          <v-card flat>
-            <v-flex xs12>
-              <v-combobox
-                @change="onChangeMat"
-                :label="translate.material"
-                :items="items_sideBar[0].options"
-                :prepend-icon="items_sideBar[0].icon"
-                multiple
-                v-model="items_sideBar[0].model"
-                id="Material"
-                style="margin-right: 10px; margin-left: 10px"
-              ></v-combobox>
-              <v-combobox
-                @change="onChangeTec"
-                :label="translate.tecnica"
-                :items="items_sideBar[1].options"
-                :prepend-icon="items_sideBar[1].icon"
-                multiple
-                v-model="items_sideBar[1].model"
-                id="Technique"
-                style="margin-right: 10px; margin-left: 10px"
-              ></v-combobox>
-              <v-combobox
-                @change="onChangeCat"
-                :label="translate.categoria"
-                :items="items_sideBar[2].options"
-                :prepend-icon="items_sideBar[2].icon"
-                multiple
-                v-model="items_sideBar[2].model"
-                id="Category"
-                style="margin-right: 10px; margin-left: 10px"
-              ></v-combobox>
-              <v-range-slider
-                @change="onChangeDate"
-                v-model="range"
-                thumb-label
-                :min="smin"
-                :max="emax"
-                prepend-icon="watch_later"
-                style="margin-right: 10px; margin-left: 10px"
-              ></v-range-slider>
-              <v-btn
-                style="margin-left: 10px"
-                class="primary"
-                @click="applyFilter()"
-              >
-                {{ translate.aplicar }}
-              </v-btn>
-              <v-btn
-                style="margin-left: 10px"
-                class="primary"
-                @click="resetFilter()"
-              >
-                {{ translate.reset }}
-              </v-btn>
-            </v-flex>
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-container style="margin-left: 30px;">
-            <img
-            src="../assets/legend/position.png"
-            style="width:20px"
-            /> {{ translate.position }}
-            <br>
-            <br>
-            <img
-            src="../assets/legend/cluster_low.png"
-            style="width:20px"
-            /> {{ translate.clusterlow }}
-            <br>
-            <br>
-            <img
-            src="../assets/legend/cluster_mid.png"
-            style="width:20px"
-            /> {{ translate.clustermid }}
-            <br>
-            <br>
-            <img
-            src="../assets/legend/cluster_high.png"
-            style="width:20px"
-            /> {{ translate.clusterhigh }}
+          <v-container style="padding: 20px">
+            <div>
+            <img src="../assets/legend/position.png" style="width: 20px" />
+            {{ translate.position }}
+            <br />
+            <br />
+            <img src="../assets/legend/position_museum.png" style="width: 20px" />
+            {{ translate.position_museum }}
+            <br />
+            <br />
+            <img src="../assets/legend/cluster_low.png" style="width: 20px" />
+            {{ translate.clusterlow }}
+            <br />
+            <br />
+            <img src="../assets/legend/cluster_mid.png" style="width: 20px" />
+            {{ translate.clustermid }}
+            <br />
+            <br />
+            <img src="../assets/legend/cluster_high.png" style="width: 20px" />
+            {{ translate.clusterhigh }}
+            </div>
+            <br />
+            <br />
+            <p class="text-justify">
+              SeMap recoge los datos de los museos de CER.ES(<a href="http://ceres.mcu.es">http://ceres.mcu.es</a>), que contiene una  selección de los bienes culturales que forman las colecciones de todos los museos integrantes de la Red Digital de Colecciones de Museos de España. Cualquier dato que considere incorrecto, diríjase a [ceres.info o lo que sea]. 
+Usted puede filtrar por museo, país, siglo,  técnica, material o categoría. Estos últimos tres filtros se han realizado agrupando los datos de acuerdo a los Tesauros- Diccionarios del patrimonio cultural de España realizados por el Ministerio de Cultura y Deporte (<a href="http://tesauros.mecd.es/tesauros/tesauros">http://tesauros.mecd.es/tesauros/tesauros</a>). 
+Usted puede visualizar los objetos por su actual ubicación o su lugar de procedencia. 
+
+            </p>
           </v-container>
         </v-tab-item>
       </v-tabs>
@@ -195,7 +153,7 @@ export default {
       range: [],
       dateMin: null,
       dateMax: null,
-      show_layer: 'procedence',
+      show_layer: "procedence",
       translate: {},
     };
   },
@@ -204,69 +162,15 @@ export default {
     this.map_set(this.map_local);
   },
   methods: {
-
     onChangeLan: function (datos) {
       this.translate = datos;
       this.translate_change(datos);
     },
-
-    loadInfo(value) {
-      
-      value.features.forEach((element) => {
-        var exist = false;
-
-        element.properties.category.split(" ; ").forEach((cat) => {
-          for (let i = 0; i < this.items_sideBar[2].options.length; i++) {
-            let cate = this.items_sideBar[2].options[i];
-            cat = cat.trim();
-            if (cate == cat) {
-              exist = true;
-            }
-          }
-          if (!exist) {
-            this.items_sideBar[2].options.push(cat);
-          }
-          exist = false;
-        });
-
-        for (let i = 0; i < this.start.length; i++) {
-          let cate = this.start[i];
-          if (cate == element.properties.start) {
-            exist = true;
-          }
-        }
-        if (!exist) {
-          if (!isNaN(parseInt(element.properties.start))) {
-            this.start.push(parseInt(element.properties.start));
-          }
-        }
-        exist = false;
-          
-        for (let i = 0; i < this.end.length; i++) {
-          let cate = this.end[i];
-          if (cate == element.properties.end) {
-            exist = true;
-          }
-        }
-        if (!exist) {
-          if (!isNaN(parseInt(element.properties.end))) {
-            this.end.push(parseInt(element.properties.end));
-          }
-        }
-        exist = false;
-      });
-
-
-      //Load info into the range element
-      this.smin = Math.min(...this.start);
-      this.emax = Math.max(...this.end);
-      this.dateMin = this.smin;
-      this.dateMax = this.emax;
-      this.range = [this.smin, this.emax];
-
-      if (localStorage.getItem("help") != "2") {
-        localStorage.setItem("help", "2");
-        this.active_tab = 2;
+  
+    loadInfo() {
+      if (localStorage.getItem("help") != "1") {
+        localStorage.setItem("help", "1");
+        this.active_tab = 1;
         this.show();
       }
     },
@@ -306,6 +210,7 @@ export default {
     },
 
     onChangeCat(value) {
+      debugger;
       this.filters[2].filter = [];
       value.forEach((element) => {
         this.filters[2].filter.push(element);
